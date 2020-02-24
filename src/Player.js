@@ -1,15 +1,18 @@
 class Player {
   constructor(canvas) {
+
     this.canvas = canvas;
+
     // this.context = getContext(canvas);
     this.context = canvas.getContext("2d");
-
     this.s = 3;
 
     this.r = 10;
 
-    this.x = canvas.getWidth / 2;
-    this.y = canvas.getHeight - this.r - 5;
+    this.x = canvas.width / 2;
+    this.y = canvas.height - this.r - 5;
+
+    // 여기부터
     this.isDirectKeyPress = false;
     this.directKey = undefined;
     this.moveX = undefined;
@@ -35,12 +38,10 @@ class Player {
   drawBody() {
     // 선을 그리기 시작
     this.context.beginPath();
-
     // arc -> 타원
     // x좌표, y좌표, r, 시작 앵글, 종료 앵글(r값), 원을그릴 방향
 
     this.context.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-
     // 원의 색상
     // fill 함수 사용시 자동으로 선의 시작/종료지점이 이어짐
 
@@ -83,16 +84,19 @@ let u = new Player(canvas);
 
 u.render();
 
-// // window.onkeydown = () => {
-// //   console.log(event.keyCode);
-// // };
+// window.onkeydown = () => {
+//   console.log(event.keyCode);
+// };
 
-// // 화면이 resizing 되면 자동으로 real 사이즈 조정
-// // 실제 canvas 넓이와 그림 비율을 조정하기 위해 scale값 조정을 위한 함수
-// /*
+// 화면이 resizing 되면 자동으로 real 사이즈 조정
+// 실제 canvas 넓이와 그림 비율을 조정하기 위해 scale값 조정을 위한 함수
+// 이러면 context에 그린 그림이 깨짐.
+
 // window.onresize = () => {
 //   const widthR = canvas.clientWidth / 400;
 //   const heightR = canvas.clientWidth / 600;
 //   console.log({ widthR, heightR });
 // };
-// */
+
+
+// https://github.com/jistol/lizard-flight/blob/master/src/main/resources/static/Lizard.js
